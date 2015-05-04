@@ -36,7 +36,7 @@
 
 // Own modules
 // --------------------------------------------------
-// @import "<%= customerName %>/testResponsiveHelpers.less"; // debug
+// @import "<%= customerName %>/testResponsiveHelpers.scss"; // debug
 <% if (boilerplateAmount === 'Just a little – Get started with a few example files') { %>
 @import "<%= customerName %>/demoElements.scss";
 @import "<%= customerName %>/footer.scss";

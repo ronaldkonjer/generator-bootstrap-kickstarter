@@ -384,7 +384,6 @@ module.exports = yeoman.generators.Base.extend({
 						this.templatePath('assets/scss/_customerName/_scaffolding.scss'),
 						this.destinationPath('assets/scss/' + this.customerName + '/_scaffolding.scss')
 					);
-					this.template('assets/scss/_customerName/_bootstrap_compass.scss', 'assets/scss/' + this.customerName + '/_bootstrap_compass.scss');
 					this.template('assets/scss/_customerName/_reset.scss', 'assets/scss/' + this.customerName + '/_reset.scss');
 					this.template('assets/scss/_customerName/_classes.scss', 'assets/scss/' + this.customerName + '/_classes.scss');
 					this.template('assets/scss/_customerName/_type.scss', 'assets/scss/' + this.customerName + '/_type.scss');
@@ -406,6 +405,7 @@ module.exports = yeoman.generators.Base.extend({
 					this.destinationPath('assets/scss/' + this.customerName + '/_' + this.customerName + 'Variables.scss')
 				);
 
+				this.template('assets/scss/_customerName/_bootstrap_compass.scss', 'assets/scss/' + this.customerName + '/_bootstrap_compass.scss');
 				this.template('assets/scss/_customerName/_variables.scss', 'assets/scss/' + this.customerName + '/_variables.scss');
 				
 				this.fs.copyTpl(
@@ -455,24 +455,25 @@ module.exports = yeoman.generators.Base.extend({
 					this.destinationPath('assets/less/' + this.customerName + '/variables.less')
 				);
 			}
+
 			if (this.includeJade) {
 				this.template('assets/views/layout/layout.jade','assets/views/layout/layout.jade');
-				
+				this.template('assets/views/partials/footer.jade','assets/views/partials/footer.jade');
+				this.template('assets/views/partials/header.jade','assets/views/partials/header.jade');
+				this.template('assets/views/partials/htmlHeader.jade','assets/views/partials/htmlHeader.jade');
+				if (this.includeSass) {
+					this.template('assets/views/partials/htmlFooter-sass.jade','assets/views/partials/htmlFooter.jade');
+				} else {
+					this.template('assets/views/partials/htmlFooter-less.jade','assets/views/partials/htmlFooter.jade');
+				}
 				this.directory(
 					this.templatePath('assets/views/mixins'),
 					this.destinationPath('assets/views/mixins')
 				);
-				
-				this.template('assets/views/partials/footer.jade','assets/views/partials/footer.jade');
-				this.template('assets/views/partials/header.jade','assets/views/partials/header.jade');
-				this.template('assets/views/partials/htmlHeader.jade','assets/views/partials/htmlHeader.jade');
-				this.template('assets/views/partials/htmlFooter.jade','assets/views/partials/htmlFooter.jade');
 			}
-
-
-			// this.log('Done with the assets');
+			
 		}
-
+		// this.log('Done with the assets');
 	},
 
 	install: function () {

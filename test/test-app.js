@@ -65,9 +65,9 @@ describe('bootstrap-kickstarter with default options', function() {
 
 	it('should create project files', function() {
 		assert.file([
-			/*'index.html',
+			'index.html',
 			'stickyFooter.html',
-			'demoElements.html',*/
+			'demoElements.html',
 			'README.md',
 			'Gruntfile.js',
 			'humans.txt',
@@ -86,8 +86,6 @@ describe('bootstrap-kickstarter with default options', function() {
 			'assets/less/base.less',
 			'assets/less/index.less',
 			'assets/less/print.less',
-			'assets/less/' + _s.slugify(prompts.customerName) + '.less',
-			'assets/less/' + _s.slugify(prompts.customerName) + '.less',
 			'assets/less/' + _s.slugify(prompts.customerName) + '/alerts.less',
 			'assets/less/' + _s.slugify(prompts.customerName) + '/demoElements.less',
 			'assets/less/' + _s.slugify(prompts.customerName) + '/footer.less',
@@ -96,7 +94,6 @@ describe('bootstrap-kickstarter with default options', function() {
 			'assets/less/' + _s.slugify(prompts.customerName) + '/scaffolding.less',
 			'assets/less/' + _s.slugify(prompts.customerName) + '/testResponsiveHelpers.less',
 			'assets/less/' + _s.slugify(prompts.customerName) + '/variables.less',
-
 		]);
 	});
 
@@ -111,6 +108,13 @@ describe('bootstrap-kickstarter with default options', function() {
 			['assets/less/' + _s.slugify(prompts.customerName) + '.less', /mixins.less/],
 			['assets/less/' + _s.slugify(prompts.customerName) + '.less', /scaffolding.less/],
 		]);
+	});
+
+	it('should not have dependencies to support SASS', function() {
+		var bowerJson = JSON.parse(fs.readFileSync('bower.json'));
+		bowerJson.should.not.have.propertyByPath('dependencies', 'bootstrap-sass');
+		var packageJson = JSON.parse(fs.readFileSync('package.json'));
+		packageJson.should.not.have.propertyByPath('devDependencies', 'grunt-contrib-compass');
 	});
 
 	it('should render author name and email within the comments of JavaScript files', function() {
@@ -192,6 +196,13 @@ describe('bootstrap-kickstarter with default options', function() {
 		]);
 	});
 
+	it('should contain less setup in Gruntfile.js', function() {
+			var arg = [
+				['Gruntfile.js', new RegExp(escapeStringRegexp('less:'),'')],
+			];
+		assert.fileContent(arg);
+	});
+
 	it('should not include conditional classes to address oldIEs', function() {
 		assert.noFileContent([
 			['index.html', /<html class="(.+)ie(\d+)">/g],
@@ -238,6 +249,17 @@ describe('bootstrap-kickstarter with default options', function() {
 				['demoElements.html', regex]
 			];
 		assert.fileContent(arg);
+	});
+
+	it('should not render BOOTSTRAP_SASS javascript files of HTML files', function() {
+		var regex = new RegExp(escapeStringRegexp('<script src="libs/bootstrap-sass/assets/javascripts/bootstrap'),''),
+			arg = [
+				['index.html', regex],
+				['stickyFooter.html', regex],
+				['demoElements.html', regex],
+				/*['Gruntfile.js', /'compass:'/],*/
+			];
+		assert.noFileContent(arg);
 	});
 
 	it('should have the default output paths within the Gruntfile', function() {
@@ -317,6 +339,131 @@ describe('bootstrap-kickstarter with default options', function() {
 	});
 
 });
+
+describe('bootstrap-kickstarter with SASS options', function() {
+	// Define prompt answers
+	var prompts = {
+		projectName: 'Test this Thingy',
+		projectDescription: 'Just a test.',
+		customerName: 'My customer',
+		features: ['includeSass'],
+		oldIeSupport: false,
+		customPaths: false,
+		authorName: 'My Name',
+		authorMail: 'name@domain.com',
+		authorUrl: 'http://www.foo.com',
+		license: 'MIT',
+		initialVersion: '0.0.0',
+		projectHomepage: 'https://github.com/userName/repository',
+		projectRepositoryType: 'git',
+		projectRepository: 'git@github.com:userName/repository.git',
+		issueTracker: 'https://github.com/userName/repository/issues',
+		boilerplateAmount: 'Just a little – Get started with a few example files'
+	};
+
+
+	before(function(done) {
+		helpers.run(path.join(__dirname, '../app'))
+
+		// Clear the directory and set it as the CWD
+		.inDir(path.join(os.tmpdir(), './temp-test'))
+
+		// Mock options passed in
+		.withOptions({
+			'skip-install': true
+		})
+
+		// Mock the prompt answers
+		.withPrompt(prompts)
+
+		.on('end', done);
+	});
+
+
+	it('should create assets', function() {
+		assert.file([
+			'assets/scss/base.scss',
+			'assets/scss/print.scss',
+			'assets/scss/index_raw.scss',
+			'assets/scss/_' + _s.slugify(prompts.customerName) + '.scss',
+			'assets/scss/' + _s.slugify(prompts.customerName) + '/_alerts.scss',
+			'assets/scss/' + _s.slugify(prompts.customerName) + '/_demoElements.scss',
+			'assets/scss/' + _s.slugify(prompts.customerName) + '/_footer.scss',
+			'assets/scss/' + _s.slugify(prompts.customerName) + '/_ribbon.scss',
+			'assets/scss/' + _s.slugify(prompts.customerName) + '/_mixins.scss',
+			'assets/scss/' + _s.slugify(prompts.customerName) + '/_scaffolding.scss',
+			'assets/scss/' + _s.slugify(prompts.customerName) + '/_testResponsiveHelpers.scss',
+			'assets/scss/' + _s.slugify(prompts.customerName) + '/_variables.scss',
+			'assets/scss/' + _s.slugify(prompts.customerName) + '/_bootstrap_compass.scss',
+			'assets/scss/' + _s.slugify(prompts.customerName) + '/_reset.scss',
+			'assets/scss/' + _s.slugify(prompts.customerName) + '/_classes.scss',
+			'assets/scss/' + _s.slugify(prompts.customerName) + '/_type.scss',
+			'assets/scss/' + _s.slugify(prompts.customerName) + '/_layout.scss',
+			'assets/scss/' + _s.slugify(prompts.customerName) + '/_structure.scss',
+			'assets/scss/' + _s.slugify(prompts.customerName) + '/_media.scss',
+			'assets/scss/' + _s.slugify(prompts.customerName) + '/_forms.scss',
+			'assets/scss/' + _s.slugify(prompts.customerName) + '/_tables.scss',
+			'assets/scss/' + _s.slugify(prompts.customerName) + '/_modules.scss',
+			'assets/scss/' + _s.slugify(prompts.customerName) + '/_' + _s.slugify(prompts.customerName) + 'Variables.scss',
+			'assets/scss/' + _s.slugify(prompts.customerName) + '/_style.scss',
+		]);
+	});
+
+	it('should import bootstrap_compass.scss file within index_raw.scss file', function() {
+		assert.fileContent([
+			['assets/scss/index_raw.scss', /bootstrap_compass.scss/],
+		]);
+	});
+
+	it('should import all scss files within _' + _s.slugify(prompts.customerName) + '.scss file', function() {
+		assert.fileContent([
+			['assets/scss/_' + _s.slugify(prompts.customerName) + '.scss', /Variables.scss/],
+			['assets/scss/_' + _s.slugify(prompts.customerName) + '.scss', /variables.scss/],
+		  ['assets/scss/_' + _s.slugify(prompts.customerName) + '.scss', /testResponsiveHelpers.scss/],
+			['assets/scss/_' + _s.slugify(prompts.customerName) + '.scss', /alerts.scss/],
+			['assets/scss/_' + _s.slugify(prompts.customerName) + '.scss', /demoElements.scss/],
+			['assets/scss/_' + _s.slugify(prompts.customerName) + '.scss', /footer.scss/],
+			['assets/scss/_' + _s.slugify(prompts.customerName) + '.scss', /ribbon.scss/],
+			['assets/scss/_' + _s.slugify(prompts.customerName) + '.scss', /mixins.scss/],
+			['assets/scss/_' + _s.slugify(prompts.customerName) + '.scss', /scaffolding.scss/],
+			['assets/scss/_' + _s.slugify(prompts.customerName) + '.scss', /reset.scss/],
+			['assets/scss/_' + _s.slugify(prompts.customerName) + '.scss', /classes.scss/],
+			['assets/scss/_' + _s.slugify(prompts.customerName) + '.scss', /type.scss/],
+			['assets/scss/_' + _s.slugify(prompts.customerName) + '.scss', /layout.scss/],
+			['assets/scss/_' + _s.slugify(prompts.customerName) + '.scss', /structure.scss/],
+			['assets/scss/_' + _s.slugify(prompts.customerName) + '.scss', /media.scss/],
+			['assets/scss/_' + _s.slugify(prompts.customerName) + '.scss', /forms.scss/],
+			['assets/scss/_' + _s.slugify(prompts.customerName) + '.scss', /tables.scss/],
+			['assets/scss/_' + _s.slugify(prompts.customerName) + '.scss', /modules.scss/],
+			['assets/scss/_' + _s.slugify(prompts.customerName) + '.scss', /style.scss/],
+		]);
+	});
+
+	it('should not render BOOTSTRAP_LESS javascript files of HTML files', function() {
+		var regex = new RegExp(escapeStringRegexp('<script src="libs/bootstrap/js'),''),
+			arg = [
+				['index.html', regex],
+				['stickyFooter.html', regex],
+				['demoElements.html', regex],
+			];
+		assert.noFileContent(arg);
+	});
+	it('should contain grunt-compass setup in Gruntfile.js', function() {
+			var arg = [
+				['Gruntfile.js', new RegExp(escapeStringRegexp('compass:'),'')],
+			];
+		assert.fileContent(arg);
+	});
+
+	it('should not have dependencies to support LESS', function() {
+		var bowerJson = JSON.parse(fs.readFileSync('bower.json'));
+		bowerJson.should.not.have.propertyByPath('dependencies', 'bootstrap');
+		var packageJson = JSON.parse(fs.readFileSync('package.json'));
+		packageJson.should.not.have.propertyByPath('devDependencies', 'grunt-contrib-less');
+	});
+
+});
+
 
 describe('bootstrap-kickstart with oldIE support', function() {
 
@@ -652,7 +799,7 @@ describe('bootstrap-kickstart with GNU General Public License', function() {
 
 });
 
-describe('bootstrap-kickstart with less boilerplate code', function() {
+describe('bootstrap-kickstart with LESS boilerplate code', function() {
 
 	// Define prompt answers
 	var prompts = {
@@ -734,3 +881,241 @@ describe('bootstrap-kickstart with less boilerplate code', function() {
 	});
 
 });
+
+describe('bootstrap-kickstart with SASS boilerplate code', function() {
+
+	// Define prompt answers
+	var prompts = {
+		projectName: 'Test this Thingy',
+		projectDescription: 'Just a test.',
+		customerName: 'My customer',
+		features: ['includeSass'],
+		oldIeSupport: false,
+		customPaths: false,
+		authorName: 'My Name',
+		authorMail: 'name@domain.com',
+		authorUrl: 'http://www.foo.com',
+		license: 'MIT',
+		initialVersion: '0.0.0',
+		projectHomepage: 'https://github.com/userName/repository',
+		projectRepositoryType: 'git',
+		projectRepository: 'git@github.com:userName/repository.git',
+		issueTracker: 'https://github.com/userName/repository/issues',
+		boilerplateAmount: 'Almost nothing - Just the minimum files and folders'
+	};
+
+	before(function(done) {
+		helpers.run(path.join(__dirname, '../app'))
+
+		// Clear the directory and set it as the CWD
+		.inDir(path.join(os.tmpdir(), './temp-test'))
+
+		// Mock options passed in
+		.withOptions({
+			'skip-install': true
+		})
+
+		// Mock the prompt answers
+		.withPrompt(prompts)
+
+		.on('end', done);
+	});
+
+	it('should create just the essential SASS files', function() {
+		assert.noFile([
+			'assets/scss/' + _s.slugify(prompts.customerName) + '/_alerts.scss',
+			'assets/scss/' + _s.slugify(prompts.customerName) + '/_demoElements.scss',
+			'assets/scss/' + _s.slugify(prompts.customerName) + '/_footer.scss',
+			'assets/scss/' + _s.slugify(prompts.customerName) + '/_ribbon.scss',
+			'assets/scss/' + _s.slugify(prompts.customerName) + '/_mixins.scss',
+			'assets/scss/' + _s.slugify(prompts.customerName) + '/_scaffolding.scss',
+			'assets/scss/' + _s.slugify(prompts.customerName) + '/_reset.scss',
+			'assets/scss/' + _s.slugify(prompts.customerName) + '/_classes.scss',
+			'assets/scss/' + _s.slugify(prompts.customerName) + '/_type.scss',
+			'assets/scss/' + _s.slugify(prompts.customerName) + '/_layout.scss',
+			'assets/scss/' + _s.slugify(prompts.customerName) + '/_structure.scss',
+			'assets/scss/' + _s.slugify(prompts.customerName) + '/_media.scss',
+			'assets/scss/' + _s.slugify(prompts.customerName) + '/_forms.scss',
+			'assets/scss/' + _s.slugify(prompts.customerName) + '/_tables.scss',
+			'assets/scss/' + _s.slugify(prompts.customerName) + '/_modules.scss',
+		]);
+	});
+
+	it('should only import the essential SASS files within ' + _s.slugify(prompts.customerName) + '.scss file', function() {
+		assert.noFileContent([
+			['assets/scss/_' + _s.slugify(prompts.customerName) + '.scss', /alerts.scss/],
+			['assets/scss/_' + _s.slugify(prompts.customerName) + '.scss', /demoElements.scss/],
+			['assets/scss/_' + _s.slugify(prompts.customerName) + '.scss', /footer.scss/],
+			['assets/scss/_' + _s.slugify(prompts.customerName) + '.scss', /ribbon.scss/],
+			['assets/scss/_' + _s.slugify(prompts.customerName) + '.scss', /mixins.scss/],
+			['assets/scss/_' + _s.slugify(prompts.customerName) + '.scss', /scaffolding.scss/],
+			['assets/scss/_' + _s.slugify(prompts.customerName) + '.scss', /reset.scss/],
+			['assets/scss/_' + _s.slugify(prompts.customerName) + '.scss', /classes.scss/],
+			['assets/scss/_' + _s.slugify(prompts.customerName) + '.scss', /type.scss/],
+			['assets/scss/_' + _s.slugify(prompts.customerName) + '.scss', /layout.scss/],
+			['assets/scss/_' + _s.slugify(prompts.customerName) + '.scss', /structure.scss/],
+			['assets/scss/_' + _s.slugify(prompts.customerName) + '.scss', /media.scss/],
+			['assets/scss/_' + _s.slugify(prompts.customerName) + '.scss', /forms.scss/],
+			['assets/scss/_' + _s.slugify(prompts.customerName) + '.scss', /tables.scss/],
+			['assets/scss/_' + _s.slugify(prompts.customerName) + '.scss', /modules.scss/],
+		]);
+	});
+
+});
+
+
+
+describe('bootstrap-kickstarter with JADE options', function() {
+	
+	var options = {
+      'skip-install-message': true,
+      'skip-install': true,
+      'skip-welcome-message': true,
+      'skip-message': true
+    };
+
+	var prompts = {
+		projectName: 'Test this Thingy',
+		projectDescription: 'Just a test.',
+		customerName: 'My customer',
+		features: ['includeJade'],
+		oldIeSupport: false,
+		customPaths: false,
+		authorName: 'My Name',
+		authorMail: 'name@domain.com',
+		authorUrl: 'http://www.foo.com',
+		license: 'MIT',
+		initialVersion: '0.0.0',
+		projectHomepage: 'https://github.com/userName/repository',
+		projectRepositoryType: 'git',
+		projectRepository: 'git@github.com:userName/repository.git',
+		issueTracker: 'https://github.com/userName/repository/issues',
+		boilerplateAmount: 'Just a little – Get started with a few example files'
+	};
+
+	var runGen;
+
+	var expected = [
+		'assets/views',
+		'assets/views/layout',
+		'assets/views/layout/layout.jade',
+		'assets/views/mixins',
+		'assets/views/mixins/analytics.jade',
+		'assets/views/mixins/form-helpers.jade',
+		'assets/views/mixins/html-helpers.jade',
+		'assets/views/mixins/placeholders.jade',
+		'assets/views/partials',
+		'assets/views/partials/footer.jade',
+		'assets/views/partials/header.jade',
+		'assets/views/partials/htmlFooter.jade',
+		'assets/views/partials/htmlHeader.jade',
+		'assets/views/demoElements.jade',
+		'assets/views/index.jade',
+		'assets/views/stickyFooter.jade',
+		'assets/views/demoElements.jade',
+	];
+
+	beforeEach(function () {
+      runGen = helpers
+        .run(path.join(__dirname, '../app'))
+        .inDir(path.join(os.tmpdir(), './temp-test'))
+        .withGenerators([[helpers.createDummyGenerator(), 'mocha:app']]);
+    });
+
+
+	 it('should create Jade views', function (done) {
+    runGen.withOptions(options).withPrompt(prompts).on('end', function () {
+
+      assert.file([].concat(
+        expected
+      ));
+      assert.noFile([
+        'index.html',
+        'demoElements.html',
+        'stickyFooter.html'
+      ]);
+
+	    var arg = [
+				['Gruntfile.js', new RegExp(escapeStringRegexp('jade:'),'')],
+			];
+			assert.fileContent(arg);
+		
+
+			var packageJson = JSON.parse(fs.readFileSync('package.json'));
+			packageJson.should.have.propertyByPath('devDependencies', 'grunt-contrib-jade');			
+     
+      done();
+    });
+  });
+
+});
+
+describe('bootstrap-kickstarter with Modernizr options', function() {
+	// Define prompt answers
+	var prompts = {
+		projectName: 'Test this Thingy',
+		projectDescription: 'Just a test.',
+		customerName: 'My customer',
+		features: ['includeModernizr'],
+		oldIeSupport: false,
+		customPaths: false,
+		authorName: 'My Name',
+		authorMail: 'name@domain.com',
+		authorUrl: 'http://www.foo.com',
+		license: 'MIT',
+		initialVersion: '0.0.0',
+		projectHomepage: 'https://github.com/userName/repository',
+		projectRepositoryType: 'git',
+		projectRepository: 'git@github.com:userName/repository.git',
+		issueTracker: 'https://github.com/userName/repository/issues',
+		boilerplateAmount: 'Just a little – Get started with a few example files'
+	};
+
+
+	before(function(done) {
+		helpers.run(path.join(__dirname, '../app'))
+
+		// Clear the directory and set it as the CWD
+		.inDir(path.join(os.tmpdir(), './temp-test'))
+
+		// Mock options passed in
+		.withOptions({
+			'skip-install': true
+		})
+
+		// Mock the prompt answers
+		.withPrompt(prompts)
+
+		.on('end', done);
+	});
+
+	it('should render modernizr javascript in HTML files', function() {
+		var regex = new RegExp(escapeStringRegexp(' <script src="libs/modernizr/modernizr.js"></script>'),''),
+			arg = [
+				['Gruntfile.js', new RegExp(escapeStringRegexp('modernizr:'),'')],
+				['index.html', regex],
+				['stickyFooter.html', regex],
+				['demoElements.html', regex],
+			];
+		assert.fileContent(arg);
+	});
+
+	it('should not render oldIESupport javascript', function() {
+		var regex = new RegExp(escapeStringRegexp("<script>(function(h){h.className = h.className.replace('no-js', 'js')})(document.documentElement)</script>"),''),
+			arg = [
+				['index.html', regex],
+				['stickyFooter.html', regex],
+				['demoElements.html', regex],
+			];
+		assert.noFileContent(arg);
+	});
+
+	it('should have dependencies to support Modernizr', function() {
+		var packageJson = JSON.parse(fs.readFileSync('package.json'));
+		packageJson.should.have.propertyByPath('devDependencies', 'grunt-modernizr');
+	});
+
+});
+
+
+
