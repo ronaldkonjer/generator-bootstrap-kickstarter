@@ -1,14 +1,11 @@
 /* TEAM */
-Main Development:   Michael Kühnel
-Twitter:            @mkuehnel
-Site:               http://www.micromata.de
-Location:           Kassel, Germany
-
-Support:            Micromata UX-Team (Moritz Fröhner, Julian Mengel, Ulrich Schmidt)
-Twitter:            @nuzy_, @vitamin_J
-
+Main Development:   Ronald Konjer 
+Site:               http://www.konjer.nl
+Location:           Zwolle, The Netherlands
 
 /* THANKS */
+Michael Kühnel      For creating the generator-bootstrap-kickstart that schaffolded the core 
+                    of this generator.
 Kai Dorschner:      For creating and documenting a pretty slick file structure
                     for developing Bootstrap themes and giving technical
                     advice → http://krnl.de
@@ -23,7 +20,7 @@ Nicolas Gallagher:  For writing those lovely contributing guidelines
 /* SITE */
 Standards:          HTML5, CSS3
 Components:         Bootstrap, jQuery, HTML5 Shiv, HTML5 Placeholder jQuery
-                    Plugin, Respond.js, Normalize.css
+                    Plugin, Respond.js, Normalize.css, Modernizr, Font-Awesome, Sass, LESS, JADE
 Build tool:         Grunt
 Package Manager:    Bower
 Software:           Sublime Text, MacDown, Terminal, SourceTree, Tower, Kaleidoscope

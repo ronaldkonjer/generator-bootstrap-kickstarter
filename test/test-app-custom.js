@@ -9,7 +9,7 @@ var path = require('path'), // reference to the built in path module
   fs = require('fs'),
   escapeStringRegexp = require('escape-string-regexp');
 
-describe('Bootstrap kickstart', function() {
+describe('Bootstrap kickstarter', function() {
   //not testing the actual run of generators yet
   it('the generator can be required without throwing', function() {
     this.app = require('../app');

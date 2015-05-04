@@ -30,9 +30,12 @@ There are tons of options for now :scream:
 | Option  | Description |
 | ------------- | ------------- |
 | `oldIeSupport`  | Whether to make use of »html5shiv«, »respondJs« and »jquery-placeholder« and conditional classes  |
+| `Jade`  | Whether to make use of Jade templating or use plain old HTML files  |
+| `SASS`  | Whether to make use of SASS or LESS preprocessor |
+| `Modernizr`  | Whether to make use of Modernizr |
 | `projectName` | Used in the generated README, package.json and bower.json  |
 | `projectDescription`  | Used in the generated Readme.md, package.json and bower.json  |
-| `customerName`  | Used to name a file and a folder within the LESS directory  |
+| `customerName`  | Used to name a file and a folder within the SASS/LESS directory  |
 | `customPaths`  | Option to define the output paths `dist`, `docs`, `reports`  |
 | `boilerplateAmount`  | Option to choose the amount of boilerplate code (HTML, LESS and JS examples)  |
 | `license`  | Option to define the license type. Defaults to MIT  |

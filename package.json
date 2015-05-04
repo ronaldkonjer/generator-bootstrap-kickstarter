@@ -1,21 +1,21 @@
 {
-  "name": "generator-bootstrap-kickstart",
-  "version": "1.2.1",
-  "description": "Yeoman Generator for »Bootstrap Kickstart«",
+  "name": "generator-bootstrap-kickstarter",
+  "version": "1.0.0",
+  "description": "Yeoman Generator for »Bootstrap Kickstarter«",
   "license": "MIT",
   "main": "app/index.js",
-  "homepage": "https://github.com/micromata/generator-bootstrap-kickstart",
+  "homepage": "https://github.com/ronaldkonjer/generator-bootstrap-kickstarter",
   "repository": {
     "type": "git",
-    "url": "https://github.com/micromata/generator-bootstrap-kickstart.git"
+    "url": "https://github.com/ronaldkonjer/generator-bootstrap-kickstarter.git"
   },
   "bugs": {
-    "url": "https://github.com/micromata/generator-bootstrap-kickstart/issues"
+    "url": "https://github.com/ronaldkonjer/generator-bootstrap-kickstarter"
   },
   "author": {
-    "name": "Michael Kühnel",
-    "email": "m.kuehnel@micromata.de",
-    "url": "http://www.micromata.de"
+    "name": "Ronald Konjer",
+    "email": "ronaldkonjer@gmail.com",
+    "url": "http://www.konjer.nl"
   },
   "engines": {
     "node": ">=0.10.0"

@@ -1,5 +1,13 @@
 # Changelog
+## version 1.0.0 (2015-05-04)
+- Added SASS preprosessor for bootstrap
+- Added Jade templating
+- Added Modernizr
+- Added Font-Awesome
+- Release v1.0.0
 
+
+########### changelog generator-bootstrap-kickstart (micromata) ###########
 ## Version 1.2.1 (2015-04-20)
 
 - 7bed166 - 2015-04-20: Downgrade yeoman-generator for now

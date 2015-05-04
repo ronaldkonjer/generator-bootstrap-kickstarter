@@ -9,7 +9,7 @@ var path = require('path'),
 	fs = require('fs'),
 	escapeStringRegexp = require('escape-string-regexp');
 
-describe('bootstrap-kickstart with default options', function() {
+describe('bootstrap-kickstarter with default options', function() {
 
 	// Define prompt answers
 	var prompts = {
