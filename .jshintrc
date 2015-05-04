@@ -1,0 +1,25 @@
+{
+  "laxcomma": true,
+  "laxbreak": true,
+  "shadow": true,
+  "strict": false, // Require `use strict` pragma in every file.
+  "node": true,
+  "browser": true, // Standard browser globals e.g. `window`, `document`.
+  "esnext": true, // Allow ES.next specific features such as `const` and `let`.
+  "bitwise": true, // Prohibit bitwise operators (&, |, ^, etc.).
+  "camelcase": false,
+  "curly": true, // Require {} for every new block or scope.
+  "eqeqeq": false, // Require triple equals i.e. `===`.
+  "immed": true, // Require immediate invocations to be wrapped in parens e.g. `( function(){}() );`
+  "indent": 2,
+  "latedef": false, // Prohibit variable use before definition.
+  "newcap": true, // Require capitalization of all constructor functions e.g. `new F()`.
+  "noarg": true, // Prohibit use of `arguments.caller` and `arguments.callee`.
+  "quotmark": false,
+  "undef": false, // Require all non-global variables be declared before they are used.
+  "unused": false, // Require all variables to be used.
+  "trailing": false, // Prohibit trailing whitespaces.
+  "smarttabs": true, // Tolerate mixed tabs and spaces when the latter are used for alignmnent only.
+  "jquery": true, // Enable globals exposed by jQuery JavaScript library.
+  "devel": false // Allow development statements e.g. `console.log();`.
+}

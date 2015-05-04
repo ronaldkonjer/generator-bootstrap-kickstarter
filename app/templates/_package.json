@@ -1,0 +1,65 @@
+{
+  "name": "<%= _.slugify(projectName) %>",
+  "title": "<%= _.titleize(projectName) %>",
+  "description": "<%= projectDescription %>",
+  "homepage": "<%= projectHomepage %>",
+  "author": {
+    "name": "<%= authorName %>",
+    "email": "<%= authorMail %>",
+    "url": "<%= authorUrl %>"
+  },
+  "license": "<%= license %>",
+  "version": "<%= initialVersion %>",
+  "repository": {
+    "type": "<%= projectRepositoryType %>",
+    "url": "<%= projectRepository %>"
+  },
+  "bugs": {
+    "url": "<%= issueTracker %>"
+  },
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-autoprefixer": "^3.0.0",
+    "grunt-available-tasks": "^0.5.7",
+    "grunt-banner": "^0.3.1",
+    "grunt-bootlint": "^0.9.0",
+    "grunt-bower-concat": "^0.4.0",
+    "grunt-browser-sync": "^1.9.2",
+    "grunt-bump": "~0.3.0",
+    "grunt-changelog": "^0.3.0",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-compress": "^0.13.0",
+    "grunt-contrib-connect": "^0.10.1",
+    "grunt-contrib-copy": "^0.8.0",
+    "grunt-contrib-cssmin": "^0.12.2",
+    "grunt-contrib-imagemin": "^0.9.4", <% if (includeJade) { %>
+    "grunt-contrib-jade": "^0.11.0",<% } %>
+    "grunt-contrib-jshint": "^0.11.2", <% if (includeSass) { %>
+    "grunt-contrib-compass": "~0.7.0", <% } else { %>
+    "grunt-contrib-less": "^1.0.1", <% } %>
+    "grunt-contrib-uglify": "^0.9.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-githooks": "^0.3.1",
+    "grunt-html": "^4.0.2",
+    "grunt-jsdoc": "^0.5.8", <% if (includeModernizr) { %>
+    "grunt-modernizr": "~0.4.0", <% } %>
+    "grunt-newer": "^1.1.0",
+    "grunt-notify": "^0.4.1",
+    "grunt-plato": "^1.2.1",
+    "grunt-processhtml": "^0.3.7",
+    "grunt-shell": "^1.1.2",
+    "grunt-uncss": "^0.4.2",
+    "jshint-stylish": "^1.0.1",
+    "load-grunt-tasks": "^3.1.0",
+    "time-grunt": "^1.1.1"
+  },
+  "engines": {
+    "node": ">=0.10.34"
+  },
+  "scripts": {
+    "postinstall": "bower install & grunt githooks"
+  }
+}

@@ -1,0 +1,52 @@
+// Override and extend Bootstrap stuff
+// --------------------------------------------------
+/**
+ * CUSTOM_VARIABLES..........Define Custom Variables
+ * VARIABLES.................Define Sass Variables
+ * MIXINS....................Define Sass Mixins
+ * RESET.....................CSS Reset 
+ * SCAFFOLDING............   Global Element Styles
+ * CLASSES...................Global/Generic Classes
+ * TYPE......................Type Specific Styles
+ * LAYOUT....................Layout-specific Style
+ * STRUCTURE.................Site structure (header, nav, etc)
+ * MEDIA.....................Images, Video, iFrames and more
+ * FORMS.....................Form Styles
+ * TABLES....................Tables styles
+ * MODULES...................Custom styles
+ */
+// Files, classes, mixins etc.
+@import "<%= customerName %>/<%= customerName %>Variables.scss";
+@import "<%= customerName %>/variables.scss";
+<% if (boilerplateAmount === 'Just a little – Get started with a few example files') { %>
+@import "<%= customerName %>/mixins.scss";
+@import "<%= customerName %>/reset.scss";
+@import "<%= customerName %>/scaffolding.scss";
+@import "<%= customerName %>/classes.scss";
+@import "<%= customerName %>/type.scss";
+@import "<%= customerName %>/layout.scss";
+@import "<%= customerName %>/structure.scss";
+@import "<%= customerName %>/media.scss";
+@import "<%= customerName %>/forms.scss";
+@import "<%= customerName %>/tables.scss";
+@import "<%= customerName %>/modules.scss";
+@import "<%= customerName %>/alerts.scss";
+<% } %>
+
+
+// Own modules
+// --------------------------------------------------
+// @import "<%= customerName %>/testResponsiveHelpers.less"; // debug
+<% if (boilerplateAmount === 'Just a little – Get started with a few example files') { %>
+@import "<%= customerName %>/demoElements.scss";
+@import "<%= customerName %>/footer.scss";
+@import "<%= customerName %>/ribbon.scss";
+<% } %>
+
+// Important note //
+// You could also use this file to insert customer related style definitions
+// directly within this file. But we recommend to exclude your scss code to
+// seperate files like the examples above when you exceed a few hundred lines
+// of code. Otherwise it will definitely have a negative impact on
+// maintainabilty.
+@import "<%= customerName %>/style.scss";

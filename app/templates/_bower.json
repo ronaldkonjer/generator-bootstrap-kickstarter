@@ -1,0 +1,46 @@
+{
+  "name": "<%= _.slugify(projectName) %>",
+  "description": "<%= projectDescription %>",
+  "version": "<%= initialVersion %>",
+  "authors": [
+    "<%= authorName %> <<%= authorMail %>>"
+  ],
+  "license": "<%= license %>",
+  "homepage": "<%= projectHomepage %>",
+  "repository": {
+    "type": "<%= projectRepositoryType %>",
+    "url": "<%= projectRepository %>"
+  },
+  "keywords": [
+    "bootstrap",
+    "boilerplate",
+    "skeleton",
+    "scaffolding",
+    "scaffold",
+    "theme",
+    "themes",
+    "kickstart",
+    "kickstarter",
+    "workflow",
+    "sass",
+    "modernizr",
+    "jade"
+  ],
+  "dependencies": {
+    "font-awesome": "~4.1.0",
+    <% if (includeSass) { %>
+    "bootstrap-sass": "git://github.com/twbs/bootstrap-sass.git#v3.3.4",
+    <% } else { %>
+    "bootstrap": "~3.3.2", <% } %>  <% if (includeModernizr) { %>
+    "modernizr": "~2.6.2", <% } %> <% if (oldIeSupport) { %>
+    "jquery": "^1.11.2",
+    "html5shiv": "^3.7.2",
+    "respondJs": "~1.4.2",
+    "jquery-placeholder": "~2.1.0"<% } else { %>
+    "jquery": "^2.1.3"<% } %>
+
+  }<% if (oldIeSupport) { %>,
+  "resolutions": {
+    "jquery": "1.11.2"
+  }<% } %>
+}

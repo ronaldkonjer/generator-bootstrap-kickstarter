@@ -1,0 +1,9 @@
+// - Create a kitten image
+// - Use 1 for color, 0 for B&W
+mixin kitten(width, height, color, classes)
+	- var classes = classes || ''
+
+	if color
+		img(src="http://placekitten.com/#{width}/#{height}", alt="Here's a cute kitten.", title="Here's a cute kitten.", class="#{classes}")
+	else
+		img(src="http://placekitten.com/g/#{width}/#{height}", alt="Here's a cute kitten.", title="Here's a cute kitten.", class="#{classes}")

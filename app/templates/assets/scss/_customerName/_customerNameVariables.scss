@@ -1,0 +1,97 @@
+/*------------------------------------*\
+    VARIABLES
+\*------------------------------------*/
+/* Colorzzz */
+/*Type*/
+/*Dimensions*/
+/*Breakpoints*/
+/*Animation*/
+
+$font3:'raleway', sans-serif;
+$font4:'open_sans', sans-serif;
+$font1:'cooperblack', sans-serif;
+//$font3:'Corben', cursive; //Cooper Black alternative
+$font2: 'roboto', sans-serif; // Franklin Gothic alternative
+
+$color1: #3B5B44;//#124B2B; // Dark green
+$color2: #0FFF18; // Light green
+$color3: #ED6C00; //#F26522; // Orange
+$color4: #C12928; // Red
+$color5: #57004E; // Purple
+
+$color11: #333; // Almost Black
+$color12: #FFF; // White 
+
+$color1-dark5: darken($color1, 5%);       //#273C2D
+$color1-dark10: darken($color1, 10%);     //#314C38
+$color1-light5: lighten($color1, 5%);     //#456A50
+$color1-light10: lighten($color1, 10%);   //#4F7A5B
+$color1-light15: lighten($color1, 15%);   //#598967
+$color1-light20: lighten($color1, 20%);   //#639972
+
+$color2-dark5: darken($color2, 5%);       //#00BB08
+$color2-dark10: darken($color2, 10%);     //#00F509
+$color2-light5: lighten($color2, 5%);     //#29FF31
+$color2-light10: lighten($color2, 10%);   //#42FF49
+$color2-light15: lighten($color2, 15%);   //#5BFF62
+$color2-light20: lighten($color2, 20%);   //#75FF7A
+
+$color3-dark5: darken($color3, 5%);       //#BA5500
+$color3-dark10: darken($color3, 10%);     //#D36000
+$color3-light5: lighten($color3, 5%);     //#FF7807
+$color3-light10: lighten($color3, 10%);   //#FF8621
+$color3-light15: lighten($color3, 15%);   //#5BFF62
+$color3-light20: lighten($color3, 20%);   //#75FF7A
+
+$color4-dark5: darken($color4, 5%);       //#97201F
+$color4-dark10: darken($color4, 10%);     //#AC2524  
+$color4-light5: lighten($color4, 5%);     //#D4302F
+$color4-light10: lighten($color4, 10%);   //#D84544
+$color4-light15: lighten($color4, 15%);   //#DD5A59
+$color4-light20: lighten($color4, 20%);   //#E16F6E
+
+$color5-dark5: darken($color5, 5%);       //#240020
+$color5-dark10: darken($color5, 10%);     //#3E0037
+$color5-light5: lighten($color5, 5%);     //#710065
+$color5-light10: lighten($color5, 10%);   //#8A007C
+$color5-light15: lighten($color5, 15%);   //#A40093
+$color5-light20: lighten($color5, 20%);   //#9ACEFF
+
+$color11-dark5: darken($color11, 5%);     //#1A1A1A
+$color11-dark10: darken($color11, 10%);   //#262626
+$color11-light5: lighten($color11, 5%);   //#404040
+$color11-light10: lighten($color11, 10%); //#4D4D4D
+$color11-light15: lighten($color11, 15%); //#595959
+$color11-light20: lighten($color11, 20%); //#666666
+
+$color12-dark5: darken($color12, 5%);     //#F2F2F2  
+$color12-dark10: darken($color12, 10%);   //#F6F6F6
+$color12-dark15: darken($color12, 15%);   //#D9D9D9
+$color12-dark20: darken($color12, 20%);   //#CCCCCC
+
+// Fonts
+//$blockquote: Lato, "Lato", "Helvetica", Helvetica, Arial, sans-serif;
+
+// Mixin variables
+$defined-bs-type: border-box !default;
+
+// Default values for text-shadow mixin
+// ====================================================================
+
+$default-text-shadow-color: darken($color11, 20%);
+$default-text-shadow-blur: 0px;
+$default-text-shadow-v-offset: 2px;
+$default-text-shadow-h-offset: 2px;
+
+// Default values for box-shadow mixin
+// ====================================================================
+$default-box-shadow-color: lighten($color11, 50%);
+$default-box-shadow-h-offset: 1px;
+$default-box-shadow-v-offset: 1px;
+$default-box-shadow-blur: 2px;
+$default-box-shadow-spread: false;
+$default-box-shadow-inset: false;
+
+// Default value for border-radius
+// ====================================================================
+$default-border-radius: 5px;

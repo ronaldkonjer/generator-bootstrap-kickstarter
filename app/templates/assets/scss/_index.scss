@@ -1,0 +1,35 @@
+// Bootstrap Core
+// --------------------------------------------------
+@import "bk/bootstrap_compass.scss";
+@import "../../libs/bootstrap-sass/assets/stylesheets/bootstrap.scss";
+
+
+// Set path to icon fonts
+//$icon-font-path: "../../libs/bootstrap-sass/vendor/assets/fonts/";
+
+// Set path to font-awesome fonts
+@import "../../libs/font-awesome/scss/font-awesome.scss";
+//$fa-font-path: "../../libs/font-awesome/fonts/";
+
+
+/**
+ * --------------------------------------------------
+ * Here begins our own CSS in the rendered CSS file.
+ */
+
+// Base styles
+// --------------------------------------------------
+// Independent of design (shared definitions).
+// base.less is meant to be used for different themes for one customer.
+@import "base.scss";
+
+// Corporate Design
+// --------------------------------------------------
+@import "<%= customerName %>.scss";
+
+// Print Styles
+// --------------------------------------------------
+// Use this file to reduce ink an optimize the readability and accessibility of the pages.
+//@import "print.scss";
+
+////////// Do NOT insert style-definitions here! //////////

@@ -1,0 +1,30 @@
+/*------------------------------------*\
+    STYLE
+\*------------------------------------*/
+// ====================================================================
+// All content, when modules not used
+// ====================================================================
+
+
+
+/* ===================================*/
+/* TABLE OF CONTENTS: */
+/* ===================================*/
+/* 01 - LAYOUT INITIALIZATION */
+/* 02 - HEADER & NAVIGATION */
+/* 03 - COMMON ELEMENTS & STYLES */
+/* 04 - PAGES & SECTIONS SETUP*/
+/* 05 - INDIVIDUAL PAGES AND ELEMENTS*/
+/* 06 - FOOTER*/
+/* 07 - RESETS : FRAMEWORK RESETS & PLUGIN RESETS*/
+/* 08 - RESPONSIVE RULES : MOBILE OPTIMIZATION*/
+
+/* ===================================*/
+/* CONTENTS: */
+/* ===================================*/
+
+/* 01 - LAYOUT INITIALIZATION */
+
+#gradient {
+  @include mm_vertical-five-colors($start-color: rgb(255,255,255), $start-color-stop: 0%,$second-color: rgb(255,255,255),$second-color-stop: 8%,$third-color: rgb(239,239,239),$third-color-stop: 36%,$fourth-color: rgb(187,187,187),$fourth-color-stop: 99%, $end-color: rgb(187,187,187), $end-color-stop: 100%);
+}

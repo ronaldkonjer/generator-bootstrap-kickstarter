@@ -1,0 +1,67 @@
+/*------------------------------------*\
+    CLASSES
+\*------------------------------------*/
+.clear {
+  clear: both; 
+}
+
+.hide {
+  display: none; 
+}
+
+.clickable {
+  cursor: pointer; 
+}
+
+.center {
+  text-align: center;
+  display: block; 
+}
+
+.left {
+  float: left; 
+}
+
+.right {
+  float: right; 
+}
+
+.tleft {
+  text-align: left!important; 
+}
+
+.tright {
+  text-align: right!important; 
+}
+
+.tcenter {
+  text-align: center!important; 
+}
+
+.inline {
+  display: inline !important; 
+}
+
+.inline-block {
+  display: inline-block !important; 
+}
+
+.block {
+  display: block !important; 
+}
+
+.pad {
+  padding: 1em; 
+}
+
+/* Clearfix http:/nicolasgallagher.com/micro-clearfix-hack/ */
+.cf:before, .cf:after {
+  content: " ";
+  display: table; 
+}
+
+.cf:after {
+  clear: both; 
+}
+
+

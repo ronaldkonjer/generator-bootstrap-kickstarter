@@ -1,0 +1,27 @@
+head
+  // Meta, title, CSS, favicons, etc.
+  meta(charset="utf-8")
+  meta(content="IE=edge" http-equiv="X-UA-Compatible")
+  meta(name="viewport", content="width=device-width, initial-scale=1.0")
+  meta(name="description", content="")
+  meta(name="author", content!="<%= authorName %>")
+  title <%= _.titleize(projectName) %>
+  // Our compiled and merged SCSS files
+  // build:css:dist assets/css/index.min.css
+  link(rel="stylesheet", href="assets/css/index.css")
+  // /build
+
+  | <% if (oldIeSupport) { %>
+  // build:js:dist libs/modernizr/modernizr.js
+  script(src='libs/modernizr/modernizr.js')
+  // /build
+  | <% } else { %>
+  //  Replace "no-js" class with "js" in case JavaScript is available.
+  |  <!--<script>(function(h){h.className = h.className.replace('no-js', 'js')})(document.documentElement)</script>-->
+  | <% } %><% if (oldIeSupport) { %> <!-- HTML5 shim and Respond.js IE8 support for HTML5 elements and media queries. -->
+  | <!--[if lt IE 9]>
+  |      <script src="libs/html5shiv/dist/html5shiv-printshiv.min.js"></script>
+  |      <script src="libs/respondJs/dest/respond.min.js"></script>
+  |      <![endif]--> <% } %>
+  //Place favicon.ico and apple-touch-icon.png in the root directory. 
+  //Place anything custom after this. But put JS to the end of body. 
