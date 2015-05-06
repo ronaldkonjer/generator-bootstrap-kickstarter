@@ -1,6 +1,6 @@
 // Bootstrap Core
 // --------------------------------------------------
-@import "bk/bootstrap_compass.scss";
+@import "<%= customerName %>/bootstrap_compass.scss";
 @import "../../libs/bootstrap-sass/assets/stylesheets/bootstrap.scss";
 
 
