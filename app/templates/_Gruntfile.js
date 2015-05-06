@@ -162,10 +162,10 @@ module.exports = function(grunt) {
             },
             dist: {
                 options: {
-                    generatedImagesDir: '<%%= config.dist %>/img/generated',
-                    imagesDir: '<%%= config.dist %>/img',
-                    /*fontsDir: '<%%= config.dist %>/styles/fonts',
-                    httpFontsPath: '/fonts',*/
+                    generatedImagesDir: '<%= config.dist %>/img/generated',
+                    imagesDir: '<%= config.dist %>/img',
+                    fontsDir: '<%= config.dist %>/assets/fonts',
+                    httpFontsPath: '../fonts',
                     relativeAssets: false
                 }
             },
