@@ -124,7 +124,7 @@ module.exports = function(grunt) {
             },
             concatenate: {
                 files: {
-                    '<%%= config.dist %>/assets/js/built.min.js': ['<%%= config.app %>/js/{,*/}*.js']
+                    '<%%= config.dist %>/assets/js/built.min.js': ['<%%= config.dist %>/assets/js/{,*/}*.js']
                 }
             },
             bower: {
@@ -162,8 +162,8 @@ module.exports = function(grunt) {
             },
             dist: {
                 options: {
-                    generatedImagesDir: '<%= config.dist %>/img/generated',
-                    imagesDir: '<%= config.dist %>/img',
+                    generatedImagesDir: '<%= config.dist %>/assets/img/generated',
+                    imagesDir: '<%= config.dist %>/assets/img',
                     fontsDir: '<%= config.dist %>/assets/fonts',
                     httpFontsPath: '../fonts',
                     relativeAssets: false
@@ -382,10 +382,10 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     dot: true,
-                    cwd: '<%%= config.vendor %>',
-                    dest: '<%%= config.app %>/css',
+                    cwd: '<%%= config.vendor %>/font-awesome/css',
+                    dest: '<%%= config.app %>/fonts/font-awesome/',
                     src: [
-                      'font-awesome/css/font-awesome.css'
+                      'font-awesome.css'
                     ]
                 }, <% if (includeSass) { %> {
                 //for bootstrap sass fonts

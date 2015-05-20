@@ -105,6 +105,25 @@ Afterwards it will call `bower install` which will look at `bower.json` and inst
 
 See [Installing and updating external ressources with bower](#using-bower) if you’re new to Bower.
 
+## Mac issues NPM install
+When working on a mac and having issues with the npm install, you can fix it by taking the following steps.
+Start of with: 
+- run npm cache clean
+- run brew uninstall node
+- remove the node_modules in the project directory
+- reinstal node with brew.
+- run brew update
+- run brew upgrade node 
+- run npm install in the project directory
+
+For more information see [install-node-js-npm-mac](http://blog.teamtreehouse.com/install-node-js-npm-mac.)
+
+
+
+
+
+
+
 ## Grunt Workflow and tasks
 
 When completed the setup, you'll be able to run the various Grunt tasks provided from the command line.
